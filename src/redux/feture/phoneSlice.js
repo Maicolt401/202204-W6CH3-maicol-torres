@@ -1,13 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 const phoneSlice = createSlice({
   name: "phone",
-  phoneInitialState: [],
+  phoneInitialState: {
+    calling: false,
+    number: [],
+  },
   reducer: {
-    loadPhone: (phone, action) =>
-      phoneInitialState === 9 ? [...action.payload] : [],
+    loadPhone: (telephone, action) => ({
+      ...telephone,
+      number: telephone.number + action.payload,
+    }),
   },
 });
 
-export const { loadPhone: loadPhoneActionCreator } = phoneSlice.action;
+export const { loadPhone: loadPhoneActionCreator } = phoneSlice.actions;
 
 export default phoneSlice.reducer;
